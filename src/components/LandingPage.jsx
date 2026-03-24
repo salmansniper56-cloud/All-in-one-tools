@@ -18,6 +18,27 @@ const HIRING_BRANDS = [
   { name: 'Tesla', logo: 'https://cdn.simpleicons.org/tesla' },
 ]
 
+const HERO_CV_TEMPLATES_LEFT = [
+  { name: 'Anna Rodriguez', role: 'Housekeeper', company: 'Hyatt Regency Seattle', accent: 'bg-orange-500', tag: 'ATS' },
+  { name: 'Sarah Mitchell', role: 'Marketing Director', company: 'Global Tech Solutions', accent: 'bg-indigo-800', tag: 'Pro' },
+  { name: 'Anna Rodriguez', role: 'Housekeeper', company: 'Hyatt Regency Seattle', accent: 'bg-orange-500', tag: 'ATS' },
+  { name: 'Sarah Mitchell', role: 'Marketing Director', company: 'Global Tech Solutions', accent: 'bg-indigo-800', tag: 'Pro' },
+]
+
+const HERO_CV_TEMPLATES_RIGHT = [
+  { name: 'Mike Beckinsale', role: 'Finance Officer', company: 'Sterling Financial Systems', accent: 'bg-sky-500', tag: 'Formal' },
+  { name: 'David Chen', role: 'Software Engineer', company: 'Amazon Web Services', accent: 'bg-cyan-600', tag: 'Developer' },
+  { name: 'Mike Beckinsale', role: 'Finance Officer', company: 'Sterling Financial Systems', accent: 'bg-sky-500', tag: 'Formal' },
+  { name: 'David Chen', role: 'Software Engineer', company: 'Amazon Web Services', accent: 'bg-cyan-600', tag: 'Developer' },
+]
+
+const HERO_COVER_LETTER_STYLES = [
+  { id: 'classic-business', name: 'Classic Business' },
+  { id: 'modern-clean', name: 'Modern Clean' },
+  { id: 'executive', name: 'Executive' },
+  { id: 'concise', name: 'Concise' },
+]
+
 export default function LandingPage() {
   const navigate = useNavigate()
   const { user } = useAuth()
@@ -122,16 +143,39 @@ export default function LandingPage() {
             </div>
             <div className="grid grid-cols-2 gap-3 h-[360px] overflow-hidden">
               <div className="cv-float-track-up space-y-3">
-                <TemplateCard name="Modern" accent="bg-blue-600" tag="ATS" />
-                <TemplateCard name="Executive" accent="bg-indigo-700" tag="Pro" />
-                <TemplateCard name="Modern" accent="bg-blue-600" tag="ATS" />
-                <TemplateCard name="Executive" accent="bg-indigo-700" tag="Pro" />
+                {HERO_CV_TEMPLATES_LEFT.map((template, index) => (
+                  <TemplateCard
+                    key={`${template.name}-left-${index}`}
+                    name={template.name}
+                    role={template.role}
+                    company={template.company}
+                    accent={template.accent}
+                    tag={template.tag}
+                  />
+                ))}
               </div>
               <div className="cv-float-track-down space-y-3">
-                <TemplateCard name="Classic" accent="bg-slate-700" tag="Formal" />
-                <TemplateCard name="Tech" accent="bg-cyan-600" tag="Developer" />
-                <TemplateCard name="Classic" accent="bg-slate-700" tag="Formal" />
-                <TemplateCard name="Tech" accent="bg-cyan-600" tag="Developer" />
+                {HERO_CV_TEMPLATES_RIGHT.map((template, index) => (
+                  <TemplateCard
+                    key={`${template.name}-right-${index}`}
+                    name={template.name}
+                    role={template.role}
+                    company={template.company}
+                    accent={template.accent}
+                    tag={template.tag}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="mt-3 rounded-lg border border-slate-200 bg-white p-3">
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-700">Cover Letter Styles</h4>
+                <span className="text-[10px] uppercase tracking-wide text-slate-500">Included</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {HERO_COVER_LETTER_STYLES.map((template) => (
+                  <CoverLetterStyleChip key={template.id} name={template.name} />
+                ))}
               </div>
             </div>
             <button
@@ -382,19 +426,40 @@ function FeatureCard({ icon, title, description }) {
   )
 }
 
-function TemplateCard({ name, accent, tag }) {
+function TemplateCard({ name, role, company, accent, tag }) {
   return (
-    <div className="rounded-xl border border-slate-200 p-3 bg-slate-50 hover:bg-white transition hover:shadow-sm">
+    <div className="rounded-xl border border-slate-200 p-3 bg-white transition hover:shadow-sm">
       <div className="aspect-[4/5] rounded-lg bg-white border p-3 space-y-2">
         <div className={`h-8 rounded ${accent}`}></div>
-        <div className="h-2 rounded bg-slate-200 w-4/5"></div>
-        <div className="h-2 rounded bg-slate-100 w-full"></div>
-        <div className="h-2 rounded bg-slate-100 w-5/6"></div>
-        <div className="h-2 rounded bg-slate-100 w-4/6"></div>
+        <div className="h-2 rounded bg-slate-300 w-4/5"></div>
+        <div className="h-2 rounded bg-slate-200 w-full"></div>
+        <div className="h-2 rounded bg-slate-200 w-5/6"></div>
+        <div className="h-2 rounded bg-slate-200 w-4/6"></div>
+        <div className="mt-2 grid grid-cols-3 gap-1">
+          <div className="h-1.5 rounded bg-slate-200"></div>
+          <div className="h-1.5 rounded bg-slate-200"></div>
+          <div className="h-1.5 rounded bg-slate-200"></div>
+        </div>
       </div>
-      <div className="mt-2 flex items-center justify-between text-sm">
-        <span className="font-semibold text-slate-800">{name}</span>
+      <div className="mt-2 flex items-start justify-between text-sm gap-2">
+        <div>
+          <span className="font-semibold text-slate-800 block leading-tight">{name}</span>
+          <span className="text-[11px] text-slate-500 block leading-tight">{role}</span>
+          <span className="text-[10px] text-slate-400 block truncate max-w-[120px]">{company}</span>
+        </div>
         <span className="text-xs px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">{tag}</span>
+      </div>
+    </div>
+  )
+}
+
+function CoverLetterStyleChip({ name }) {
+  return (
+    <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2">
+      <div className="text-xs font-medium text-slate-700">{name}</div>
+      <div className="mt-1 space-y-1">
+        <div className="h-1 rounded bg-slate-300 w-3/4"></div>
+        <div className="h-1 rounded bg-slate-200 w-full"></div>
       </div>
     </div>
   )
