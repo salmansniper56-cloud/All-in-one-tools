@@ -320,21 +320,50 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="px-6 py-8 bg-gray-900 text-gray-400">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <FileText className="w-6 h-6 text-blue-400" />
-            <span className="text-lg font-bold text-white">All in One Tools</span>
+      <footer className="px-6 py-12 bg-gray-900 text-gray-400">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <FileText className="w-6 h-6 text-blue-400" />
+                <span className="text-lg font-bold text-white">All in One Tools</span>
+              </div>
+              <p className="text-sm">
+                Free online tools for creators, professionals, and job seekers. Build resumes, generate bios, 
+                convert files, and more.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-3">Tools</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="/tools" className="hover:text-white">Bio Generator</a></li>
+                <li><a href="/tools" className="hover:text-white">Hashtag Generator</a></li>
+                <li><a href="/tools" className="hover:text-white">Image Compressor</a></li>
+                <li><a href="/tools" className="hover:text-white">PDF to Word</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-3">Resume Builder</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="/dashboard" className="hover:text-white">Create Resume</a></li>
+                <li><a href="/dashboard" className="hover:text-white">CV Templates</a></li>
+                <li><a href="/dashboard" className="hover:text-white">Cover Letter</a></li>
+                <li><a href="/dashboard" className="hover:text-white">ATS Checker</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-3">Company</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="/about" className="hover:text-white">About Us</a></li>
+                <li><a href="/contact" className="hover:text-white">Contact</a></li>
+                <li><a href="/privacy" className="hover:text-white">Privacy Policy</a></li>
+                <li><a href="/terms" className="hover:text-white">Terms of Service</a></li>
+              </ul>
+            </div>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-4 mb-4 text-sm">
-            <a href="/about" className="hover:text-white">About</a>
-            <a href="/contact" className="hover:text-white">Contact</a>
-            <a href="/privacy" className="hover:text-white">Privacy</a>
-            <a href="/terms" className="hover:text-white">Terms</a>
+          <div className="border-t border-gray-800 pt-6 text-center text-sm">
+            <p>© 2026 All in One Tools (onlinepakistan.live). Free online tools for everyone.</p>
           </div>
-          <p className="text-sm">
-            © 2026 All in One Tools. Use practical tools with confidence.
-          </p>
         </div>
       </footer>
     </div>
